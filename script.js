@@ -1,20 +1,20 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const firstCurrency = document.getElementById("first");
-    const secondCurrency = document.getElementById("second");
+    const Currencytype1 = document.getElementById("first");
+    const Currencytype2 = document.getElementById("second");
     const inputRate = document.getElementById("input-rate");
     const convertRate = document.getElementById("convert-rate");
     const convertButton = document.getElementById("convertion_button");
 
     async function fetchExchangeRate(base, to, amount) {
-        const url = `https://api.exchangerate-api.com/v4/latest/${base}`;
+        const url = `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${base.toLowerCase()}.json`;
 
         try {
             const response = await fetch(url);
             if (!response.ok) throw new Error("API request failed");
 
             const data = await response.json();
-            if (data.rates[to]) {
-                return data.rates[to] * amount;
+            if (data[base.toLowerCase()] && data[base.toLowerCase()][to.toLowerCase()]) {
+                return data[base.toLowerCase()][to.toLowerCase()] * amount;
             } else {
                 throw new Error("Invalid currency response");
             }
@@ -26,8 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     async function convertCurrency() {
-        const base = firstCurrency.value;
-        const to = secondCurrency.value;
+        const base = Currencytype1.value;
+        const to = Currencytype2.value;
         const amount = parseFloat(inputRate.value);
 
         if (!base || !to || isNaN(amount) || amount <= 0) {
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const convertedAmount = await fetchExchangeRate(base, to, amount);
         if (convertedAmount !== null) {
-            convertRate.value = Math.round(convertedAmount);
+            convertRate.value = convertedAmount.toFixed(2);
         } else {
             convertRate.value = "Error";
         }

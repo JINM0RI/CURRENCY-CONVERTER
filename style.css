@@ -3,17 +3,18 @@
     padding: 5px 1px;
 }
 body{
-    background-color: rgb(12, 63, 192);
+    background-color: #1f0bbd;
 }
 #sec-body{
     width: 500px;
     height: 500px;
-    background-color: rgb(26, 128, 101);
+    background-color: #8f2869;
 }
 .input-options{
     display: inline-block;
     position: relative;
-    top: 200px;
+    top: 100px;
+    right: -30px;
 }
 .rate{
     
@@ -23,10 +24,32 @@ body{
 .convert-options{
     display: inline-block;
     position: relative;
-    top: 200px;
+    top: 100px;
+    right: -30px;
 }
 .rate1{
     
     position: relative;
     top: 50px;
+
+}
+#convertion_button{
+    position: relative;
+    top: 250px;
+    right: 221px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #0a9b88;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+#first,#second{
+    border-radius: 9%;
+}
+h1{
+    font-style:italic;
+    color: rgb(235, 251, 255);
+    
 }
